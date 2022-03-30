@@ -5,11 +5,11 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface iProductoService {
-    Mono<ProductoDTO> add(ProductoDTO productoDTO);
+    Mono<ProductoDTO> add(Mono<ProductoDTO> productoDTO);
 
     Mono<ProductoDTO> delete(String id);
 
-    Mono<ProductoDTO> update(String id, ProductoDTO productoDTO);
+    Mono<ProductoDTO> update(String id, Mono<ProductoDTO> productoDTO);
 
     Mono<ProductoDTO> updateStock(String id, Integer stock);
 

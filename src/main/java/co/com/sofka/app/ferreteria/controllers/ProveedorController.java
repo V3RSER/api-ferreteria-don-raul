@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api")
 public class ProveedorController {
@@ -21,7 +19,7 @@ public class ProveedorController {
 
     @PostMapping("/proveedor")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<ProveedorDTO> add(@RequestBody ProveedorDTO proveedorDTO) {
+    private Mono<ProveedorDTO> add(@RequestBody Mono<ProveedorDTO> proveedorDTO) {
         return this.service.add(proveedorDTO);
     }
 
@@ -33,7 +31,8 @@ public class ProveedorController {
     }
 
     @PutMapping("/proveedor/{id}")
-    private Mono<ResponseEntity<ProveedorDTO>> update(@PathVariable("id") String id, @RequestBody ProveedorDTO proveedorDTO) {
+    private Mono<ResponseEntity<ProveedorDTO>> update(@PathVariable("id") String id,
+                                                      @RequestBody Mono<ProveedorDTO> proveedorDTO) {
         return this.service.update(id, proveedorDTO)
                 .flatMap(proveedor -> Mono.just(ResponseEntity.ok(proveedor)))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
@@ -56,7 +55,8 @@ public class ProveedorController {
 
     @PostMapping("/proveedor/{id}/volante")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<VolanteDTO> generateVolante(@PathVariable("id") String id, @RequestBody List<ProductoDTO> productos) {
+    private Mono<VolanteDTO> generateVolante(@PathVariable("id") String id,
+                                             @RequestBody Flux<ProductoDTO> productos) {
         return this.service.generateVolante(id, productos);
     }
 }

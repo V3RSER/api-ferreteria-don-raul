@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api")
 public class ClienteController {
@@ -21,7 +19,7 @@ public class ClienteController {
 
     @PostMapping("/cliente")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<ClienteDTO> add(@RequestBody ClienteDTO clienteDTO) {
+    private Mono<ClienteDTO> add(@RequestBody Mono<ClienteDTO> clienteDTO) {
         return this.service.add(clienteDTO);
     }
 
@@ -33,7 +31,8 @@ public class ClienteController {
     }
 
     @PutMapping("/cliente/{id}")
-    private Mono<ResponseEntity<ClienteDTO>> update(@PathVariable("id") String id, @RequestBody ClienteDTO clienteDTO) {
+    private Mono<ResponseEntity<ClienteDTO>> update(@PathVariable("id") String id,
+                                                    @RequestBody Mono<ClienteDTO> clienteDTO) {
         return this.service.update(id, clienteDTO)
                 .flatMap(cliente -> Mono.just(ResponseEntity.ok(cliente)))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
@@ -57,7 +56,7 @@ public class ClienteController {
     @PostMapping("/cliente/{id}/factura")
     @ResponseStatus(HttpStatus.CREATED)
     private Mono<FacturaDTO> generateFactura(@PathVariable("id") String id, @RequestBody String vendedor,
-                                             @RequestBody List<CarritoProductoDTO> productos) {
+                                             @RequestBody Flux<CarritoProductoDTO> productos) {
         return this.service.generateFactura(id, vendedor, productos);
     }
 

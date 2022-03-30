@@ -9,11 +9,11 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 
 public interface iClienteService {
-    Mono<ClienteDTO> add(ClienteDTO clienteDTO);
+    Mono<ClienteDTO> add(Mono<ClienteDTO> clienteDTO);
 
     Mono<ClienteDTO> delete(String id);
 
-    Mono<ClienteDTO> update(String id, ClienteDTO clienteDTO);
+    Mono<ClienteDTO> update(String id, Mono<ClienteDTO> clienteDTO);
 
     Mono<ClienteDTO> findById(String id);
 
@@ -21,7 +21,7 @@ public interface iClienteService {
 
     Flux<ClienteDTO> findAll();
 
-    Mono<FacturaDTO> generateFactura(String idCliente, String vendedor, List<CarritoProductoDTO> productos);
+    Mono<FacturaDTO> generateFactura(String idCliente, String vendedor, Flux<CarritoProductoDTO> productos);
 
     Flux<FacturaDTO> findAllFacturas();
 }
