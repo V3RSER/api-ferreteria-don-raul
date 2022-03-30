@@ -1,8 +1,8 @@
 package co.com.sofka.app.ferreteria.services;
 
-import co.com.sofka.app.ferreteria.dtos.cliente.FacturaDTO;
 import co.com.sofka.app.ferreteria.dtos.producto.ProductoDTO;
 import co.com.sofka.app.ferreteria.dtos.proveedor.ProveedorDTO;
+import co.com.sofka.app.ferreteria.dtos.proveedor.VolanteDTO;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -17,9 +17,9 @@ public interface iProveedorService {
 
     Mono<ProveedorDTO> findById(String id);
 
-    Mono<ProductoDTO> findByDocumentoIdentidad(String documentoIdentidad);
+    Mono<ProveedorDTO> findByDocumentoIdentidad(String documentoIdentidad);
 
     Flux<ProveedorDTO> findAll();
 
-    Mono<FacturaDTO> generateVolante(String idProveedor, List<ProductoDTO> productos);
+    Mono<VolanteDTO> generateVolante(String idProveedor, List<ProductoDTO> productos);
 }

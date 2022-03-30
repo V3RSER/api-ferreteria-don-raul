@@ -3,7 +3,6 @@ package co.com.sofka.app.ferreteria.services;
 import co.com.sofka.app.ferreteria.dtos.cliente.CarritoProductoDTO;
 import co.com.sofka.app.ferreteria.dtos.cliente.ClienteDTO;
 import co.com.sofka.app.ferreteria.dtos.cliente.FacturaDTO;
-import co.com.sofka.app.ferreteria.dtos.producto.ProductoDTO;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -18,7 +17,7 @@ public interface iClienteService {
 
     Mono<ClienteDTO> findById(String id);
 
-    Mono<ProductoDTO> findByDocumentoIdentidad(String documentoIdentidad);
+    Mono<ClienteDTO> findByDocumentoIdentidad(String documentoIdentidad);
 
     Flux<ClienteDTO> findAll();
 
