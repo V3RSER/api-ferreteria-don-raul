@@ -1,4 +1,4 @@
-package co.com.sofka.app.ferreteria.dtos;
+package co.com.sofka.app.ferreteria.dtos.cliente;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,8 +1,8 @@
 package co.com.sofka.app.ferreteria.utils;
 
-import co.com.sofka.app.ferreteria.dtos.ClienteDTO;
-import co.com.sofka.app.ferreteria.dtos.ProductoDTO;
-import co.com.sofka.app.ferreteria.dtos.ProveedorDTO;
+import co.com.sofka.app.ferreteria.dtos.cliente.ClienteDTO;
+import co.com.sofka.app.ferreteria.dtos.producto.ProductoDTO;
+import co.com.sofka.app.ferreteria.dtos.proveedor.ProveedorDTO;
 import co.com.sofka.app.ferreteria.models.Cliente;
 import co.com.sofka.app.ferreteria.models.Producto;
 import co.com.sofka.app.ferreteria.models.Proveedor;

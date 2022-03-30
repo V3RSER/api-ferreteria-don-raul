@@ -1,6 +1,6 @@
 package co.com.sofka.app.ferreteria.models;
 
-import co.com.sofka.app.ferreteria.dtos.VolanteDTO;
+import co.com.sofka.app.ferreteria.dtos.proveedor.VolanteDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
