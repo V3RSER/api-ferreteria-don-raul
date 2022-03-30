@@ -19,44 +19,44 @@ public class ProveedorController {
 
     @PostMapping("/proveedor")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<ProveedorDTO> add(@RequestBody Mono<ProveedorDTO> proveedorDTO) {
+    public Mono<ProveedorDTO> add(@RequestBody Mono<ProveedorDTO> proveedorDTO) {
         return this.service.add(proveedorDTO);
     }
 
     @DeleteMapping("/proveedor/{id}")
-    private Mono<ResponseEntity<ProveedorDTO>> delete(@PathVariable("id") String id) {
+    public Mono<ResponseEntity<ProveedorDTO>> delete(@PathVariable("id") String id) {
         return this.service.delete(id)
                 .flatMap(proveedor -> Mono.just(ResponseEntity.ok(proveedor)))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
     @PutMapping("/proveedor/{id}")
-    private Mono<ResponseEntity<ProveedorDTO>> update(@PathVariable("id") String id,
-                                                      @RequestBody Mono<ProveedorDTO> proveedorDTO) {
+    public Mono<ResponseEntity<ProveedorDTO>> update(@PathVariable("id") String id,
+                                                     @RequestBody Mono<ProveedorDTO> proveedorDTO) {
         return this.service.update(id, proveedorDTO)
                 .flatMap(proveedor -> Mono.just(ResponseEntity.ok(proveedor)))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
     @GetMapping("/proveedor/{id}")
-    private Mono<ProveedorDTO> findById(@PathVariable("id") String id) {
+    public Mono<ProveedorDTO> findById(@PathVariable("id") String id) {
         return this.service.findById(id);
     }
 
     @GetMapping("/proveedor/document:{document}")
-    private Mono<ProveedorDTO> findByDocumentoIdentidad(@PathVariable("document") String document) {
+    public Mono<ProveedorDTO> findByDocumentoIdentidad(@PathVariable("document") String document) {
         return this.service.findByDocumentoIdentidad(document);
     }
 
     @GetMapping("/proveedors")
-    private Flux<ProveedorDTO> findAll() {
+    public Flux<ProveedorDTO> findAll() {
         return this.service.findAll();
     }
 
     @PostMapping("/proveedor/{id}/volante")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<VolanteDTO> generateVolante(@PathVariable("id") String id,
-                                             @RequestBody Flux<ProductoDTO> productos) {
+    public Mono<VolanteDTO> generateVolante(@PathVariable("id") String id,
+                                            @RequestBody Flux<ProductoDTO> productos) {
         return this.service.generateVolante(id, productos);
     }
 }

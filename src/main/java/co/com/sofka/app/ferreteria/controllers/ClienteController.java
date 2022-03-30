@@ -19,49 +19,49 @@ public class ClienteController {
 
     @PostMapping("/cliente")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<ClienteDTO> add(@RequestBody Mono<ClienteDTO> clienteDTO) {
+    public Mono<ClienteDTO> add(@RequestBody Mono<ClienteDTO> clienteDTO) {
         return this.service.add(clienteDTO);
     }
 
     @DeleteMapping("/cliente/{id}")
-    private Mono<ResponseEntity<ClienteDTO>> delete(@PathVariable("id") String id) {
+    public Mono<ResponseEntity<ClienteDTO>> delete(@PathVariable("id") String id) {
         return this.service.delete(id)
                 .flatMap(cliente -> Mono.just(ResponseEntity.ok(cliente)))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
     @PutMapping("/cliente/{id}")
-    private Mono<ResponseEntity<ClienteDTO>> update(@PathVariable("id") String id,
-                                                    @RequestBody Mono<ClienteDTO> clienteDTO) {
+    public Mono<ResponseEntity<ClienteDTO>> update(@PathVariable("id") String id,
+                                                   @RequestBody Mono<ClienteDTO> clienteDTO) {
         return this.service.update(id, clienteDTO)
                 .flatMap(cliente -> Mono.just(ResponseEntity.ok(cliente)))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
     @GetMapping("/cliente/{id}")
-    private Mono<ClienteDTO> findById(@PathVariable("id") String id) {
+    public Mono<ClienteDTO> findById(@PathVariable("id") String id) {
         return this.service.findById(id);
     }
 
     @GetMapping("/cliente/document:{document}")
-    private Mono<ClienteDTO> findByDocumentoIdentidad(@PathVariable("document") String document) {
+    public Mono<ClienteDTO> findByDocumentoIdentidad(@PathVariable("document") String document) {
         return this.service.findByDocumentoIdentidad(document);
     }
 
     @GetMapping("/clientes")
-    private Flux<ClienteDTO> findAll() {
+    public Flux<ClienteDTO> findAll() {
         return this.service.findAll();
     }
 
     @PostMapping("/cliente/{id}/factura")
     @ResponseStatus(HttpStatus.CREATED)
-    private Mono<FacturaDTO> generateFactura(@PathVariable("id") String id, @RequestBody String vendedor,
-                                             @RequestBody Flux<CarritoProductoDTO> productos) {
+    public Mono<FacturaDTO> generateFactura(@PathVariable("id") String id, @RequestBody String vendedor,
+                                            @RequestBody Flux<CarritoProductoDTO> productos) {
         return this.service.generateFactura(id, vendedor, productos);
     }
 
     @GetMapping("/facturas")
-    private Flux<FacturaDTO> findAllFacturas() {
+    public Flux<FacturaDTO> findAllFacturas() {
         return this.service.findAllFacturas();
     }
 }
