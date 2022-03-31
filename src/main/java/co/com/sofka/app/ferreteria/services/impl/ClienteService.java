@@ -1,6 +1,6 @@
 package co.com.sofka.app.ferreteria.services.impl;
 
-import co.com.sofka.app.ferreteria.dtos.cliente.ClienteDTO;
+import co.com.sofka.app.ferreteria.dtos.ClienteDTO;
 import co.com.sofka.app.ferreteria.repositories.ClienteRepository;
 import co.com.sofka.app.ferreteria.services.iClienteService;
 import co.com.sofka.app.ferreteria.utils.AppUtils;
@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 public class ClienteService implements iClienteService {
     @Autowired
     private ClienteRepository repository;
-    
+
     @Override
     public Mono<ClienteDTO> add(Mono<ClienteDTO> clienteDTO) {
         return clienteDTO.map(AppUtils::clienteDtoToModel)

@@ -1,6 +1,6 @@
 package co.com.sofka.app.ferreteria.services;
 
-import co.com.sofka.app.ferreteria.dtos.cliente.ClienteDTO;
+import co.com.sofka.app.ferreteria.dtos.ClienteDTO;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

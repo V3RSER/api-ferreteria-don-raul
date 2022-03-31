@@ -1,6 +1,6 @@
 package co.com.sofka.app.ferreteria.controllers;
 
-import co.com.sofka.app.ferreteria.dtos.cliente.ClienteDTO;
+import co.com.sofka.app.ferreteria.dtos.ClienteDTO;
 import co.com.sofka.app.ferreteria.services.iClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

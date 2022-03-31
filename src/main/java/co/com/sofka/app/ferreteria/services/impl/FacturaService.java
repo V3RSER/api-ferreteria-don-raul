@@ -4,9 +4,7 @@ import co.com.sofka.app.ferreteria.dtos.factura.CarritoProductoDTO;
 import co.com.sofka.app.ferreteria.dtos.factura.FacturaDTO;
 import co.com.sofka.app.ferreteria.dtos.factura.VentaDTO;
 import co.com.sofka.app.ferreteria.repositories.FacturaRepository;
-import co.com.sofka.app.ferreteria.services.iClienteService;
 import co.com.sofka.app.ferreteria.services.iFacturaService;
-import co.com.sofka.app.ferreteria.services.iProductoService;
 import co.com.sofka.app.ferreteria.utils.AppUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,18 +18,11 @@ public class FacturaService implements iFacturaService {
     @Autowired
     private FacturaRepository repository;
 
-    @Autowired
-    private iProductoService productoService;
-
-    @Autowired
-    private iClienteService clienteService;
-
     @Override
     public Mono<FacturaDTO> add(Mono<VentaDTO> venta) {
         var facturaDTO = new FacturaDTO();
         return venta
                 .map((VentaDTO v) -> {
-                    // Generando la factura
                     facturaDTO.setFecha(LocalDateTime.now());
                     facturaDTO.setVendedor(v.getVendedor());
                     facturaDTO.setCliente(v.getCliente());
@@ -45,15 +36,6 @@ public class FacturaService implements iFacturaService {
                             }).sum());
                     return facturaDTO;
                 })
-                .doOnNext(f ->
-                        // Modificando almacenamiento
-                        // FIXME No modifica el almacenamiento
-                        f.getProductos().forEach(carrito ->
-                                productoService
-                                        .reduceStock(
-                                                carrito.getProducto().getId(),
-                                                carrito.getCantidad())
-                        ))
                 .map(AppUtils::facturaDtoToModel)
                 .flatMap(this.repository::save)
                 .map(AppUtils::facturaModelToDto);

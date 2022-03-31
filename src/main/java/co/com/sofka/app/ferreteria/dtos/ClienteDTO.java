@@ -1,4 +1,4 @@
-package co.com.sofka.app.ferreteria.dtos.cliente;
+package co.com.sofka.app.ferreteria.dtos;
 
 import co.com.sofka.app.ferreteria.dtos.factura.FacturaDTO;
 import lombok.AllArgsConstructor;
