@@ -1,13 +1,11 @@
 package co.com.sofka.app.ferreteria.utils;
 
-import co.com.sofka.app.ferreteria.dtos.cliente.ClienteDTO;
+import co.com.sofka.app.ferreteria.dtos.ClienteDTO;
+import co.com.sofka.app.ferreteria.dtos.ProveedorDTO;
 import co.com.sofka.app.ferreteria.dtos.factura.FacturaDTO;
 import co.com.sofka.app.ferreteria.dtos.producto.ProductoDTO;
-import co.com.sofka.app.ferreteria.dtos.proveedor.ProveedorDTO;
-import co.com.sofka.app.ferreteria.models.Cliente;
-import co.com.sofka.app.ferreteria.models.Factura;
-import co.com.sofka.app.ferreteria.models.Producto;
-import co.com.sofka.app.ferreteria.models.Proveedor;
+import co.com.sofka.app.ferreteria.dtos.volante.VolanteDTO;
+import co.com.sofka.app.ferreteria.models.*;
 import org.springframework.beans.BeanUtils;
 
 public class AppUtils {
@@ -57,5 +55,17 @@ public class AppUtils {
         Factura factura = new Factura();
         BeanUtils.copyProperties(facturaDTO, factura);
         return factura;
+    }
+
+    public static VolanteDTO volanteModelToDto(Volante volante) {
+        VolanteDTO volanteDTO = new VolanteDTO();
+        BeanUtils.copyProperties(volante, volanteDTO);
+        return volanteDTO;
+    }
+
+    public static Volante volanteDtoToModel(VolanteDTO volanteDTO) {
+        Volante volante = new Volante();
+        BeanUtils.copyProperties(volanteDTO, volante);
+        return volante;
     }
 }

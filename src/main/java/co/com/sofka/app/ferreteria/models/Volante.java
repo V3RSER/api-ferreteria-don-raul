@@ -1,23 +1,25 @@
-package co.com.sofka.app.ferreteria.dtos.proveedor;
+package co.com.sofka.app.ferreteria.models;
 
-import co.com.sofka.app.ferreteria.dtos.producto.ProductoDTO;
+import co.com.sofka.app.ferreteria.dtos.factura.CarritoProductoDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VolanteDTO {
+@Document(collection = "volantes")
+public class Volante {
     @Id
     private String id;
-    private LocalDate fecha;
+    private LocalDateTime fecha;
     private String nombreProveedor;
     private String documentoIdentidadProveedor;
-    private List<ProductoDTO> productos;
+    private List<CarritoProductoDTO> productos;
     private Double total;
 }
