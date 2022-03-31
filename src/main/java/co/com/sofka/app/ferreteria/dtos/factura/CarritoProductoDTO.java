@@ -1,4 +1,4 @@
-package co.com.sofka.app.ferreteria.dtos.cliente;
+package co.com.sofka.app.ferreteria.dtos.factura;
 
 import co.com.sofka.app.ferreteria.dtos.producto.ProductoDTO;
 import lombok.AllArgsConstructor;
@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 public class CarritoProductoDTO {
     private ProductoDTO producto;
     private Integer cantidad;
+    private Double total;
 }
