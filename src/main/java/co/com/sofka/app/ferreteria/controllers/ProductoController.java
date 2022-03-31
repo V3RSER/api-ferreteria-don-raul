@@ -49,11 +49,6 @@ public class ProductoController {
         return this.service.findById(id);
     }
 
-    @GetMapping("/producto/nombre:{nombre}")
-    public Mono<ProductoDTO> findByNombre(@PathVariable("document") String nombre) {
-        return this.service.findByNombre(nombre);
-    }
-
     @GetMapping("/productos")
     public Flux<ProductoDTO> findAll() {
         return this.service.findAll();

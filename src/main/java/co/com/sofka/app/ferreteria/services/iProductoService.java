@@ -14,8 +14,6 @@ public interface iProductoService {
     Mono<ProductoDTO> updateStock(String id, Integer stock);
 
     Mono<ProductoDTO> findById(String id);
-
-    Mono<ProductoDTO> findByNombre(String nombre);
-
+    
     Flux<ProductoDTO> findAll();
 }
