@@ -1,8 +1,6 @@
 package co.com.sofka.app.ferreteria.controllers;
 
-import co.com.sofka.app.ferreteria.dtos.cliente.CarritoProductoDTO;
 import co.com.sofka.app.ferreteria.dtos.cliente.ClienteDTO;
-import co.com.sofka.app.ferreteria.dtos.cliente.FacturaDTO;
 import co.com.sofka.app.ferreteria.services.iClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,25 +41,8 @@ public class ClienteController {
         return this.service.findById(id);
     }
 
-    @GetMapping("/cliente/document:{document}")
-    public Mono<ClienteDTO> findByDocumentoIdentidad(@PathVariable("document") String document) {
-        return this.service.findByDocumentoIdentidad(document);
-    }
-
     @GetMapping("/clientes")
     public Flux<ClienteDTO> findAll() {
         return this.service.findAll();
-    }
-
-    @PostMapping("/cliente/{id}/factura")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Mono<FacturaDTO> generateFactura(@PathVariable("id") String id, @RequestBody String vendedor,
-                                            @RequestBody Flux<CarritoProductoDTO> productos) {
-        return this.service.generateFactura(id, vendedor, productos);
-    }
-
-    @GetMapping("/facturas")
-    public Flux<FacturaDTO> findAllFacturas() {
-        return this.service.findAllFacturas();
     }
 }

@@ -1,5 +1,6 @@
 package co.com.sofka.app.ferreteria.dtos.cliente;
 
+import co.com.sofka.app.ferreteria.dtos.factura.FacturaDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
