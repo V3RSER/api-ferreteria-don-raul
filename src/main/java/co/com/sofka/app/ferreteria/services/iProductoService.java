@@ -11,9 +11,11 @@ public interface iProductoService {
 
     Mono<ProductoDTO> update(String id, Mono<ProductoDTO> productoDTO);
 
-    Mono<ProductoDTO> updateStock(String id, Integer stock);
+    Mono<ProductoDTO> addStock(String id, Integer cantidad);
+
+    Mono<ProductoDTO> reduceStock(String id, Integer cantidad);
 
     Mono<ProductoDTO> findById(String id);
-    
+
     Flux<ProductoDTO> findAll();
 }

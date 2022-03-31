@@ -41,9 +41,22 @@ public class ProductoService implements iProductoService {
     }
 
     @Override
-    public Mono<ProductoDTO> updateStock(String id, Integer stock) {
+    public Mono<ProductoDTO> addStock(String id, Integer cantidad) {
         return this.repository.findById(id)
-                .doOnNext(producto -> producto.getExistencias().setActual(stock))
+                .doOnNext(producto -> producto
+                        .getExistencias()
+                        .setActual(producto.getExistencias().getActual() + cantidad))
+                .flatMap(this.repository::save)
+                .map(AppUtils::productoModelToDto)
+                .switchIfEmpty(Mono.empty());
+    }
+
+    @Override
+    public Mono<ProductoDTO> reduceStock(String id, Integer cantidad) {
+        return this.repository.findById(id)
+                .doOnNext(producto -> producto
+                        .getExistencias()
+                        .setActual(producto.getExistencias().getActual() - cantidad))
                 .flatMap(this.repository::save)
                 .map(AppUtils::productoModelToDto)
                 .switchIfEmpty(Mono.empty());

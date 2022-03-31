@@ -36,10 +36,18 @@ public class ProductoController {
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
-    @PutMapping("/producto/{id}/stock")
-    public Mono<ResponseEntity<ProductoDTO>> updateStock(@PathVariable("id") String id,
-                                                         @RequestBody Integer stock) {
-        return this.service.updateStock(id, stock)
+    @PutMapping("/producto/{id}/reduce")
+    public Mono<ResponseEntity<ProductoDTO>> reduceStock(@PathVariable("id") String id,
+                                                         @RequestBody Integer cantidad) {
+        return this.service.reduceStock(id, cantidad)
+                .flatMap(producto -> Mono.just(ResponseEntity.ok(producto)))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+    }
+
+    @PutMapping("/producto/{id}/add")
+    public Mono<ResponseEntity<ProductoDTO>> addStock(@PathVariable("id") String id,
+                                                      @RequestBody Integer cantidad) {
+        return this.service.addStock(id, cantidad)
                 .flatMap(producto -> Mono.just(ResponseEntity.ok(producto)))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
