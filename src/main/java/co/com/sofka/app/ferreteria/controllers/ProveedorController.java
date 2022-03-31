@@ -1,8 +1,6 @@
 package co.com.sofka.app.ferreteria.controllers;
 
-import co.com.sofka.app.ferreteria.dtos.producto.ProductoDTO;
-import co.com.sofka.app.ferreteria.dtos.proveedor.ProveedorDTO;
-import co.com.sofka.app.ferreteria.dtos.proveedor.VolanteDTO;
+import co.com.sofka.app.ferreteria.dtos.ProveedorDTO;
 import co.com.sofka.app.ferreteria.services.iProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,20 +41,9 @@ public class ProveedorController {
         return this.service.findById(id);
     }
 
-    @GetMapping("/proveedor/document:{document}")
-    public Mono<ProveedorDTO> findByDocumentoIdentidad(@PathVariable("document") String document) {
-        return this.service.findByDocumentoIdentidad(document);
-    }
-
     @GetMapping("/proveedors")
     public Flux<ProveedorDTO> findAll() {
         return this.service.findAll();
     }
 
-    @PostMapping("/proveedor/{id}/volante")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Mono<VolanteDTO> generateVolante(@PathVariable("id") String id,
-                                            @RequestBody Flux<ProductoDTO> productos) {
-        return this.service.generateVolante(id, productos);
-    }
 }
