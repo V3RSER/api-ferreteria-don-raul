@@ -37,17 +37,17 @@ public class ProductoController {
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
-    @PutMapping("/producto/{id}/reduce")
+    @PutMapping("/producto/{id}/reduce/{cantidad}")
     public Mono<ResponseEntity<ProductoDTO>> reduceStock(@PathVariable("id") String id,
-                                                         @RequestBody Integer cantidad) {
+                                                         @PathVariable("cantidad") Integer cantidad) {
         return this.service.reduceStock(id, cantidad)
                 .flatMap(producto -> Mono.just(ResponseEntity.ok(producto)))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
-    @PutMapping("/producto/{id}/add")
+    @PutMapping("/producto/{id}/add/{cantidad}")
     public Mono<ResponseEntity<ProductoDTO>> addStock(@PathVariable("id") String id,
-                                                      @RequestBody Integer cantidad) {
+                                                      @PathVariable("cantidad") Integer cantidad) {
         return this.service.addStock(id, cantidad)
                 .flatMap(producto -> Mono.just(ResponseEntity.ok(producto)))
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
