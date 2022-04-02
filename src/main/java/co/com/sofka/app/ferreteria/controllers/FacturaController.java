@@ -12,6 +12,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class FacturaController {
     @Autowired
     private iFacturaService service;

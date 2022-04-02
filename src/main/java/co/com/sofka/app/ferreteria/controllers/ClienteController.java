@@ -11,6 +11,7 @@ import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin("*")
 public class ClienteController {
     @Autowired
     private iClienteService service;
