@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CarritoProductoDTO {
-    private ProductoDTO producto;
+    private ProductoDTO product;
     private Integer cantidad;
     private Double total;
 }

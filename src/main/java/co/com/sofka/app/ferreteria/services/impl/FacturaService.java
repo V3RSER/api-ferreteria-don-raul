@@ -31,7 +31,7 @@ public class FacturaService implements iFacturaService {
                     facturaDTO.setTotal(v.getCarrito()
                             .stream()
                             .mapToDouble((CarritoProductoDTO p) -> {
-                                p.setTotal(p.getProducto().getPrecio() * p.getCantidad());
+                                p.setTotal(p.getProduct().getPrecio() * p.getCantidad());
                                 return p.getTotal();
                             }).sum());
                     return facturaDTO;

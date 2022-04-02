@@ -30,7 +30,7 @@ public class VolanteService implements iVolanteService {
                     volanteDTO.setTotal(v.getCarrito()
                             .stream()
                             .mapToDouble((CarritoProductoDTO p) -> {
-                                p.setTotal(p.getProducto().getPrecio() * p.getCantidad());
+                                p.setTotal(p.getProduct().getPrecio() * p.getCantidad());
                                 return p.getTotal();
                             }).sum());
                     return volanteDTO;
